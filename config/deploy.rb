@@ -1,3 +1,5 @@
+require 'capistrano/ext/multistage'
+
 set :application, "test repo"
 set :domain, "youfolio-beta.com"
 set :repository,  "git@github.com:youfoliodevuser/TestRepo2.git"
@@ -11,7 +13,8 @@ set :deploy_via, :remote_cache
 set :deploy_to, "/home/youfolio/TestRepo"
 
 set :stages, ["staging", "production"]
-set :default_stage, "staging"
+set :default_stage, "production"
+#set :branch, 'master'
 
 
 role :web, domain                          # Your HTTP server, Apache/etc
@@ -41,10 +44,10 @@ namespace :deploy do
     run "cp #{shared_path}/credentials/database.yml #{release_path}/config/database.yml"
   end
   
-  desc "install the necessary prerequisites"
-  task :bundle_install do
-    run "cd #{release_path} && bundle install"
-  end
+  #desc "install the necessary prerequisites"
+  #task :bundle_install do
+   # run "cd #{release_path} && bundle install"
+  #end
   
 end
 
