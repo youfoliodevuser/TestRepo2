@@ -10,6 +10,9 @@ set :scm, :git
 set :deploy_via, :remote_cache
 set :deploy_to, "/home/youfolio/TestRepo"
 
+set :stages, ["staging", "production"]
+set :default_stage, "staging"
+
 
 role :web, domain                          # Your HTTP server, Apache/etc
 role :app, domain                          # This may be the same as your `Web` server
